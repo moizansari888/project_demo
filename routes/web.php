@@ -11,6 +11,9 @@
 |
 */
 
+use App\Category;
+use App\Post;
+
 Route::get('/', function () {
     return view('welcome');
 });

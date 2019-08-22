@@ -11,7 +11,12 @@
            </div>
        <div class ="form-group">
                {!! Form::label('category_id','Category :') !!}
-               {!! Form::select('category_id',array('0'=>'options'),null,['class'=>'form-control']) !!}
+               <select class="form-control" name="category_id">
+                   <option value="0">Select Category</option>
+                   @foreach($category as $cat)
+                   <option value="{{$cat->id}}">{{$cat->name}}</option>
+                       @endforeach
+               </select>
        </div>
        <div class ="form-group">
                {!! Form::label('photo_id','Post Photo :') !!}

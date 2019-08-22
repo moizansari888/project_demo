@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Categories;
+use App\Category;
 use App\Http\Requests\PostRequest;
 use App\Photos;
 use App\Post;
@@ -18,6 +20,7 @@ class AdminPostController extends Controller
     public function index()
     {
         //
+
         $posts = Post::all();
         return view('admin.post.index',compact('posts'));
     }
@@ -30,7 +33,8 @@ class AdminPostController extends Controller
     public function create()
     {
         //
-        return view('admin.post.create');
+        $category = Category::all();
+        return view('admin.post.create',compact('category'));
     }
 
     /**
