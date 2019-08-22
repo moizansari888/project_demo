@@ -51,7 +51,8 @@
 
         <div class="pull-right">
             <ul class="nav pull-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, User <b class="caret"></b></a>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" ><span class="glyphicon glyphicon-user" style="color: #1d68a7"></span>
+                        <b>  Welcome , <span>{{\Illuminate\Support\Facades\Auth::user()->name}}</span> </b><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/user/preferences"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
                         <li><a href="/help/support"><i class="fa fa-gear fa-fw"></i> Setting</a></li>
@@ -134,11 +135,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">All Users</a>
+                                <a href="{{url('/admin/user')}}">All Users</a>
                             </li>
 
                             <li>
-                                <a href="#">Create User</a>
+                                <a href="{{url('/admin/user/create')}}">Create User</a>
                             </li>
 
                         </ul>
@@ -149,11 +150,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/posts">All Posts</a>
+                                <a href="{{url('/admin/post')}}">All Posts</a>
                             </li>
 
                             <li>
-                                <a href="/posts/create">Create Post</a>
+                                <a href="/{{url('/admin/post/create')}}">Create Post</a>
                             </li>
 
                         </ul>

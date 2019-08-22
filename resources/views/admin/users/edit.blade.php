@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('content')
 
+    @if(session()->has('admin'))
+        <h3 class="bg-danger" style="color: red">{{session('admin')}}</h3>
+    @endif
+
     <h1>Edit User</h1>
 
     <div class="row">
@@ -16,7 +20,6 @@
     <div class="form-group">
         {!! Form::label('name','Name :') !!}
         {!! Form::text('name',null,['class'=>'form-control']) !!}
-        {{csrf_field()}}
     </div>
     <div class ="form-group">
         {!! Form::label('email','Email :') !!}
@@ -42,13 +45,21 @@
         {!! Form::label('password','Password :') !!}
         {!! Form::password('password',['class'=>'form-control']) !!}
     </div>
+        <hr>
     <div class="form-group">
-        {!! Form::submit('Edit User',['class'=>'btn btn-primary']) !!}
+        {!! Form::submit('Edit User',['class'=>'btn btn-primary col-sm-6']) !!}
 
     </div>
+        {!! Form::close() !!}
+        {!! Form::open(['method'=>'DELETE','action'=>['AdminUserController@destroy',$user->id]]) !!}
+        <div class="form-group">
+            {!! Form::submit('Delete User',['class'=>'btn btn-danger col-sm-6']) !!}
 
-    {!! Form::close() !!}
+        </div>
+
+        {!! Form::close() !!}
     </div>
+
     </div>
         <div class="row">
         @include('error.form_error')

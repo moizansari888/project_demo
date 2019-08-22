@@ -29,4 +29,13 @@ Route::get('admin',function (){
 
 });
 
-Route::resource('admin/user','AdminUserController');
+Route::group(['middleware'=>'admin'],function (){
+
+    Route::resource('admin/user','AdminUserController');
+
+    Route::resource('admin/post','AdminPostController');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 @section('content')
 
+    @if(session()->has('delete_user'))
+        <p class="bg-danger" style="color: red">{{session('delete_user')}}</p>
+        @endif
     <h1>User</h1>
     <div class="container">
     <table class="table table-hover">
