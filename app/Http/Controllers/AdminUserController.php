@@ -58,8 +58,9 @@ class AdminUserController extends Controller
             $user['photo_id'] = $photo->id;
         }
         $user['password'] = bcrypt($request->password);
-        User::create($user);
-        return redirect('/admin/user');
+        return $request->all();
+//        User::create($user);
+//        return redirect('/admin/user');
         //return $request->all();
     }
 

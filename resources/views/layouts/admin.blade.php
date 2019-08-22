@@ -154,7 +154,7 @@
                             </li>
 
                             <li>
-                                <a href="/{{url('/admin/post/create')}}">Create Post</a>
+                                <a href="{{url('/admin/post/create')}}">Create Post</a>
                             </li>
 
                         </ul>

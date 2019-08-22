@@ -30,8 +30,8 @@
               <td>{{$user->role->name}}</td>
               <td>{{$user->email}}</td>
               <td>{{$user->status}}</td>
-              <td>{{$user->created_at}}</td>
-              <td>{{$user->updated_at}}</td>
+              <td>{{$user->created_at->diffForhumans()}}</td>
+              <td>{{$user->updated_at->diffForhumans()}}</td>
           </tr>
           @endforeach
 
