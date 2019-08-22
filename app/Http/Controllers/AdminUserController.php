@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Photos;
 use App\Role;
@@ -47,15 +48,17 @@ class AdminUserController extends Controller
         $user = $request->all();
         //return redirect('/admin/user');
 
-        if($file = $request->file('photo_id')) {
-            $name = $file->getClientOriginalName();
-            $file->move('images', $name);
+        if($file = $request->file('photo_id'))
+        {
+            $name1 = $file->getClientOriginalName();
+            $file->move('images', $name1);
             //name will present in Photos Table as well as in Photos Controller fillable
-            $photo = Photos::create(['name'=>$name]);
+            $photo = Photos::create(['name'=>$name1]);
             $user['photo_id'] = $photo->id;
         }
         $user['password'] = bcrypt($request->password);
         User::create($user);
+        return redirect('/admin/user');
         //return $request->all();
     }
 
@@ -79,6 +82,11 @@ class AdminUserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findorfail($id);
+
+        $role = Role::all();
+
+        return view('admin.users.edit',compact('user','role'));
     }
 
     /**
@@ -88,9 +96,28 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditUserRequest $request, $id)
     {
         //
+        if(trim($request->password == ''))
+        {
+            $input = $request->except('password');
+        }
+        else{
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+        }
+        $users = User::findorfail($id);
+
+        if($file = $request->file('photo_id'))
+        {
+            $name2 = $file->getClientOriginalName();
+            $file->move('images',$name2);
+            $photo1 = Photos::create(['name'=>$name2]);
+            $input['photo_id'] = $photo1->id;
+        }
+        $users->update($input);
+        return redirect('/admin/user');
     }
 
     /**
